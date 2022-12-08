@@ -7,7 +7,9 @@ const type = document.createElement('p')
 cont.appendChild(div);
 div.appendChild(title);
 div.appendChild(image);
-div.appendChild()
+div.appendChild(type)
+
+
 
 const fetchPokemon = () => {
   let num = Math.floor(Math.random() * 905);
@@ -21,10 +23,15 @@ const fetchPokemon = () => {
       };
       title.textContent = pokemon.name;
       image.src = pokemon.image
+      type.textContent = pokemon.type
 
-      console.log( 'hello ' + pokemon.image);
+    
     });
 };
+
+
+
+
 fetchPokemon();
-console.log(pokemon.name);
+
 
