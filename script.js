@@ -1,37 +1,31 @@
-const cont = document.getElementById("container");
-const div = document.createElement("div");
-const title = document.createElement("h1");
-const image = document.createElement('IMG')
-const type = document.createElement('p')
-
-cont.appendChild(div);
-div.appendChild(title);
-div.appendChild(image);
-div.appendChild(type)
-
-
-
+const cont = document.getElementById('container');
 const fetchPokemon = () => {
-  let num = Math.floor(Math.random() * 905);
-  fetch(`https://pokeapi.co/api/v2/pokemon/${num}`)
-    .then((response) => response.json())
-    .then((data) => {
-      const pokemon = {
-        name: data.name,
-        image: data.sprites["front_default"],
-        type: data.types.map((type) => type.type.name).join(", "),
-      };
-      title.textContent = pokemon.name;
-      image.src = pokemon.image
-      type.textContent = pokemon.type
-
-    
-    });
+  const promises = [];
+  for (let i = 1; i < 150; i++) {
+    const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+    promises.push(fetch(url).then((response) => response.json()));
+  }
+  Promise.all(promises).then((results) => {
+    const pokemon = results.map((data) => ({
+      name: data.name,
+      id: data.id,
+      image: data.sprites["front_default"],
+      type: data.types.map((type) => type.type.name).join(", "),
+    }));
+   displayPokemon(pokemon)
+  });
 };
 
+const displayPokemon = (pokemon) => {
+const pokemonTitle = pokemon.map(pokeman => 
+  `<li class='card>
+  <img class='card-image' src="${pokeman.image}"/>
+  <h1 class='card-title>${pokeman.id}. ${pokeman.name}</h1>
+  <p class= 'card-subtitle>Type: ${pokeman.type}</p>
+  
+  </li>`).join(' ')
 
+  cont.innerHTML = pokemonTitle
 
-
+}
 fetchPokemon();
-
-

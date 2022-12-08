@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    margin: auto;
+}
+.card{
+    width: 50%;
+    margin:  auto;
+    border: 2px black solid;
+    background-color: aqua;
+}
+.card > h1,p {
+    text-align: center;
+}
+.sprite {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button{
+    display: block;
+    margin: auto;
+    color: blue;
+}
