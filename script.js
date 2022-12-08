@@ -17,13 +17,17 @@ const fetchPokemon = () => {
 };
 
 const displayPokemon = (pokemon) => {
-const pokemonTitle = pokemon.map(pokeman => 
-  `<li class='card>
-  <img class='card-image' src="${pokeman.image}"/>
-  <h1 class='card-title>${pokeman.id}. ${pokeman.name}</h1>
-  <p class= 'card-subtitle>Type: ${pokeman.type}</p>
+const pokemonTitle = pokemon
+  .map(
+    (pokeman) =>
+      `<li class='card'>
+  <h1 class='card-title'>${pokeman.id}. ${pokeman.name}</h1>
+   <img class='card-image' src="${pokeman.image}"/>
+  <p class='card-subtitle'>Type: ${pokeman.type}</p>
   
-  </li>`).join(' ')
+  </li>`
+  )
+  .join(" ");
 
   cont.innerHTML = pokemonTitle
 
