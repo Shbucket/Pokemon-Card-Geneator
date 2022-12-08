@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Secular One';
 }
 body {
   background-color: aqua;
@@ -26,4 +28,7 @@ h1 {
 .getInfo {
   margin: 10px;
   text-align: center;
+}
+button{
+    padding: 5px;
 }
