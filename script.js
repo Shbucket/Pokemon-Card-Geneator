@@ -1,7 +1,7 @@
 const cont = document.getElementById("container");
 const fetchPokemon = () => {
   const promises = [];
-  for (let i = 1; i < 150; i++) {
+  for (let i = 1; i < 152; i++) {
     const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
     promises.push(fetch(url).then((response) => response.json()));
   }
@@ -31,6 +31,8 @@ const displayPokemon = (data) => {
 
   cont.innerHTML = pokemonTitle;
 };
+
+//displays pokemon that matches user entered number from input form
 const displayPoke = (poke) => {
   const pokemonInfo = `<li class='card'>
   <h1 class='card-title'>${poke.id}. ${poke.name}</h1>
@@ -40,7 +42,7 @@ const displayPoke = (poke) => {
   </li>`;
   cont.innerHTML = pokemonInfo
 }
-
+//fetches pokemon that matches user entered number from input form and replaces dom children to feed in new one 
 const findPokemon = () => {
   cont.replaceChildren();
   fetch(`https://pokeapi.co/api/v2/pokemon/${number.value}`)
@@ -54,7 +56,7 @@ const findPokemon = () => {
       };
     console.log(poke.name)
     displayPoke(poke);
-    });
+    }).catch((err)=> cont.innerHTML = 'Pokemon not found please try again');
  
 };
 
