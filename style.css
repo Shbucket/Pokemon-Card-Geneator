@@ -20,6 +20,7 @@ li{
    background-color: white;
 }
 h1{text-align: center;}
-#number{
-    
+.getInfo{
+    margin: 10px;
+    text-align: center;
 }
