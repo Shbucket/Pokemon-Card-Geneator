@@ -1,26 +1,29 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
-body{
-    background-color: aqua;
+body {
+  background-color: aqua;
 }
-#container{
+#container {
+  margin: 10px;
   display: grid;
- grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
- grid-gap:20px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 20px;
 }
-li{
-    list-style: none;
+li {
+  list-style: none;
 }
-.card{
-    padding: 40px;
-   border: 1px solid black;
-   text-align: center;
-   background-color: white;
+.card {
+  padding: 40px;
+  border: 1px solid black;
+  text-align: center;
+  background-color: white;
 }
-h1{text-align: center;}
-.getInfo{
-    margin: 10px;
-    text-align: center;
+h1 {
+  text-align: center;
+}
+.getInfo {
+  margin: 10px;
+  text-align: center;
 }

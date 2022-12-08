@@ -45,7 +45,7 @@ const displayPoke = (poke) => {
 //fetches pokemon that matches user entered number from input form and replaces dom children to feed in new one 
 const findPokemon = () => {
   cont.replaceChildren();
-  fetch(`https://pokeapi.co/api/v2/pokemon/${number.value}`)
+  fetch(`https://pokeapi.co/api/v2/pokemon/${text.value.toLowerCase()}`)
     .then((response) => response.json())
     .then((data) => {
       const poke = {
