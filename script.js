@@ -32,4 +32,8 @@ const pokemonTitle = pokemon
   cont.innerHTML = pokemonTitle
 
 }
+
+const findPokemon = (${number.value}) {
+  
+}
 fetchPokemon();
