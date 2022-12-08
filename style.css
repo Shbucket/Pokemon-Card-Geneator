@@ -4,15 +4,16 @@
 }
 #container{
   background-color: aqua;
-  display: flex;
-  flex-flow:row wrap;
-  justify-content: space-around;
+  display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+ grid-gap:20px;
 }
 li{
     list-style: none;
 }
 .card{
-   
-   width: 25%;
+    padding: 40px;
    border: 1px solid black;
+   text-align: center;
+   background-color: white;
 }
