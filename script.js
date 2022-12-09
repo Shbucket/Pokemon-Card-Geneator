@@ -1,23 +1,23 @@
 const cont = document.getElementById("container");
 //fetches information to
-const fetchPokemon = () => {
+const fetchPokemon = async () => {
   const promises = [];
   for (let i = 1; i < 152; i++) {
     const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
     promises.push(fetch(url).then((response) => response.json()));
   }
-  Promise.all(promises).then((results) => {
-    const pokemon = results.map((data) => ({
-      name: data.name,
-      id: data.id,
-      image: data.sprites["front_default"],
-      weight: data.weight,
-      height: data.height,
-      type: data.types.map((type) => type.type.name).join(", "),
-    }));
-    displayPokemon(pokemon);
-  });
+  const results = await Promise.all(promises);
+  const pokemon = results.map((data) => ({
+    name: data.name,
+    id: data.id,
+    image: data.sprites["front_default"],
+    weight: data.weight,
+    height: data.height,
+    type: data.types.map((type) => type.type.name).join(", "),
+  }));
+  displayPokemon(pokemon);
 };
+
 //creates card to display pokemon details
 const displayPokemon = (data) => {
   const pokemonTitle = data
@@ -54,22 +54,26 @@ const displayPoke = (poke) => {
   cont.innerHTML = pokemonInfo;
 };
 //fetches pokemon that matches user entered string from input form and replaces dom children to feed in new one
-const findPokemon = () => {
+const findPokemon = async () => {
   cont.replaceChildren();
-  fetch(`https://pokeapi.co/api/v2/pokemon/${text.value.toLowerCase()}`)
-    .then((response) => response.json())
-    .then((data) => {
-      const poke = {
-        name: data.name,
-        id: data.id,
-        image: data.sprites["front_default"],
-        type: data.types.map((type) => type.type.name).join(", "),
-        weight: data.weight,
-        height: data.height,
-        moves: data.moves.map((move) => move.move.name).join(", "),
-      };
-      console.log(poke.name);
-      displayPoke(poke);
-    })
-    .catch((err) => (cont.innerHTML = "Pokemon not found please try again"));
+  try {
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${text.value.toLowerCase()}`
+    );
+    const data = await response.json();
+
+    const poke = {
+      name: data.name,
+      id: data.id,
+      image: data.sprites["front_default"],
+      type: data.types.map((type) => type.type.name).join(", "),
+      weight: data.weight,
+      height: data.height,
+      moves: data.moves.map((move) => move.move.name).join(", "),
+    };
+    console.log(poke.name);
+    displayPoke(poke);
+  } catch (err) {
+    cont.innerHTML = "Pokemon not found please try again";
+  }
 };
