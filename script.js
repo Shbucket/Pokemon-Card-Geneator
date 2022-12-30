@@ -14,6 +14,8 @@ const fetchPokemon = async () => {
     weight: data.weight,
     height: data.height,
     type: data.types.map((type) => type.type.name).join(", "),
+   
+   
   }));
   displayPokemon(pokemon);
 };
@@ -74,6 +76,9 @@ const findPokemon = async () => {
     console.log(poke.name);
     displayPoke(poke);
   } catch (err) {
+    const errC = err.code;
+    const errM = err.message;
+    console.log(eerC,errM);
     cont.innerHTML = "Pokemon not found please try again";
   }
 };
